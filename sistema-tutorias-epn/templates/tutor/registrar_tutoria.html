@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+
+{% block title %}Registrar Tutoría - Sistema de Tutorías EPN{% endblock %}
+
+{% block content %}
+<div class="container my-4">
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <div class="card shadow">
+                <div class="card-header bg-success text-white">
+                    <h4 class="mb-0"><i class="bi bi-pencil-square"></i> Registrar Resultado de Tutoría</h4>
+                </div>
+                <div class="card-body">
+                    <!-- Información de la tutoría -->
+                    <div class="alert alert-info">
+                        <h6 class="alert-heading">Información de la Tutoría</h6>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p class="mb-1"><strong>Estudiante:</strong> {{ tutoria.estudiante.nombre }}</p>
+                                <p class="mb-1"><strong>Asignatura:</strong> {{ tutoria.asignatura.nombre }}</p>
+                            </div>
+                            <div class="col-md-6">
+                                <p class="mb-1"><strong>Fecha:</strong> {{ tutoria.fecha.strftime('%d/%m/%Y') }}</p>
+                                <p class="mb-1"><strong>Horario:</strong> {{ tutoria.hora_inicio }} - {{ tutoria.hora_fin }}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <form method="POST">
+                        <div class="mb-3">
+                            <label for="temas_tratados" class="form-label">
+                                <strong>Temas Tratados</strong>
+                                <span class="text-danger">*</span>
+                            </label>
+                            <textarea class="form-control" id="temas_tratados" name="temas_tratados" 
+                                      rows="3" required placeholder="Describe los temas que se abordaron en la tutoría..."></textarea>
+                            <small class="text-muted">
+                                Ejemplo: Derivadas parciales, regla de la cadena, ejercicios de aplicación
+                            </small>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="nivel_avance" class="form-label">
+                                <strong>Nivel de Avance del Estudiante</strong>
+                                <span class="text-danger">*</span>
+                            </label>
+                            <select class="form-select" id="nivel_avance" name="nivel_avance" required>
+                                <option value="">-- Selecciona el nivel de avance --</option>
+                                <option value="excelente">Excelente - Domina completamente los conceptos</option>
+                                <option value="bueno">Bueno - Comprende bien, con práctica mejorará</option>
+                                <option value="regular">Regular - Requiere más estudio y práctica</option>
+                                <option value="necesita_refuerzo">Necesita Refuerzo - Dificultades significativas</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="observaciones" class="form-label">
+                                <strong>Observaciones</strong>
+                            </label>
+                            <textarea class="form-control" id="observaciones" name="observaciones" 
+                                      rows="3" placeholder="Observaciones adicionales sobre el desempeño del estudiante..."></textarea>
+                            <small class="text-muted">
+                                Observaciones sobre actitud, participación, dificultades específicas, etc.
+                            </small>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="recomendaciones" class="form-label">
+                                <strong>Recomendaciones</strong>
+                                <span class="text-danger">*</span>
+                            </label>
+                            <textarea class="form-control" id="recomendaciones" name="recomendaciones" 
+                                      rows="3" required placeholder="Recomendaciones para el estudiante..."></textarea>
+                            <small class="text-muted">
+                                Ejemplo: Resolver ejercicios del capítulo 5, revisar videos sobre el tema, practicar más problemas
+                            </small>
+                        </div>
+
+                        <div class="alert alert-warning">
+                            <i class="bi bi-info-circle"></i> 
+                            <strong>Importante:</strong> Esta información quedará registrada en el historial del estudiante 
+                            y será visible tanto para él como para la coordinación académica.
+                        </div>
+
+                        <div class="d-flex justify-content-between">
+                            <a href="{{ url_for('main.tutor_dashboard') }}" class="btn btn-secondary">
+                                <i class="bi bi-arrow-left"></i> Cancelar
+                            </a>
+                            <button type="submit" class="btn btn-success">
+                                <i class="bi bi-check-circle"></i> Guardar Registro
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Ayuda y Guías -->
+            <div class="card shadow-sm mt-4">
+                <div class="card-header bg-light">
+                    <h6 class="mb-0"><i class="bi bi-question-circle"></i> Guía para el Registro</h6>
+                </div>
+                <div class="card-body">
+                    <ul class="mb-0">
+                        <li><strong>Temas Tratados:</strong> Lista específica de los conceptos abordados</li>
+                        <li><strong>Nivel de Avance:</strong> Evaluación objetiva del dominio del estudiante</li>
+                        <li><strong>Observaciones:</strong> Detalles relevantes sobre la sesión</li>
+                        <li><strong>Recomendaciones:</strong> Sugerencias concretas para el estudio autónomo</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

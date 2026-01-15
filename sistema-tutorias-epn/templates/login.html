@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %}Iniciar Sesión - Sistema de Tutorías EPN{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center align-items-center" style="min-height: 80vh;">
+        <div class="col-md-6 col-lg-5">
+            <div class="card shadow">
+                <div class="card-body p-5">
+                    <div class="text-center mb-4">
+                        <i class="bi bi-mortarboard-fill text-primary" style="font-size: 3rem;"></i>
+                        <h2 class="mt-3">Iniciar Sesión</h2>
+                        <p class="text-muted">Sistema de Tutorías EPN</p>
+                    </div>
+                    
+                    <form method="POST" action="{{ url_for('main.login') }}">
+                        <div class="mb-3">
+                            <label for="cedula" class="form-label">Cédula</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-person"></i></span>
+                                <input type="text" class="form-control" id="cedula" name="cedula" 
+                                       placeholder="1234567890" required>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Contraseña</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-lock"></i></span>
+                                <input type="password" class="form-control" id="password" name="password" 
+                                       placeholder="••••••••" required>
+                            </div>
+                        </div>
+                        
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary btn-lg">
+                                <i class="bi bi-box-arrow-in-right"></i> Ingresar
+                            </button>
+                        </div>
+                    </form>
+                    
+                    <hr class="my-4">
+                    
+                    <div class="alert alert-info">
+                        <strong>Credenciales de prueba:</strong><br>
+                        <small>
+                            <strong>Estudiante:</strong> 1750000001 / est123<br>
+                            <strong>Tutor:</strong> 1700000002 / tutor123<br>
+                            <strong>Coordinador:</strong> 1700000001 / coord123
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

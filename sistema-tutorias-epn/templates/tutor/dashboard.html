@@ -1,0 +1,166 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard Tutor - Sistema de Tutorías EPN{% endblock %}
+
+{% block content %}
+<div class="container my-4">
+    <div class="row mb-4">
+        <div class="col">
+            <h2><i class="bi bi-person-workspace"></i> Dashboard - Tutor</h2>
+            <p class="text-muted">Bienvenido, {{ current_user.nombre }}</p>
+        </div>
+        <div class="col-auto">
+            <a href="{{ url_for('main.tutor_disponibilidad') }}" class="btn btn-primary">
+                <i class="bi bi-calendar-plus"></i> Gestionar Disponibilidad
+            </a>
+        </div>
+    </div>
+
+    <!-- Quick Stats -->
+    <div class="row mb-4">
+        <div class="col-md-4">
+            <div class="card bg-warning text-white">
+                <div class="card-body">
+                    <h5 class="card-title"><i class="bi bi-calendar-day"></i> Hoy</h5>
+                    <h2>{{ tutorias_hoy|length }}</h2>
+                    <p class="mb-0">Tutorías de hoy</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card bg-primary text-white">
+                <div class="card-body">
+                    <h5 class="card-title"><i class="bi bi-calendar-check"></i> Próximas</h5>
+                    <h2>{{ tutorias_proximas|length }}</h2>
+                    <p class="mb-0">Tutorías programadas</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card bg-danger text-white">
+                <div class="card-body">
+                    <h5 class="card-title"><i class="bi bi-exclamation-triangle"></i> Pendientes</h5>
+                    <h2>{{ tutorias_pendientes|length }}</h2>
+                    <p class="mb-0">Por registrar</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Tutorías de Hoy -->
+        <div class="col-lg-6">
+            <div class="card shadow-sm mb-4">
+                <div class="card-header bg-warning text-white">
+                    <h5 class="mb-0"><i class="bi bi-calendar-day"></i> Tutorías de Hoy</h5>
+                </div>
+                <div class="card-body">
+                    {% if tutorias_hoy %}
+                        <div class="list-group">
+                            {% for tutoria in tutorias_hoy %}
+                                <div class="list-group-item">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <h6 class="mb-1">{{ tutoria.hora_inicio }} - {{ tutoria.hora_fin }}</h6>
+                                        <span class="badge bg-{{ 'info' if tutoria.modalidad == 'virtual' else 'success' }}">
+                                            {{ tutoria.modalidad.capitalize() }}
+                                        </span>
+                                    </div>
+                                    <p class="mb-1">
+                                        <strong>Estudiante:</strong> {{ tutoria.estudiante.nombre }}<br>
+                                        <strong>Asignatura:</strong> {{ tutoria.asignatura.nombre }}<br>
+                                        <strong>Lugar:</strong> {{ tutoria.ubicacion }}
+                                    </p>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <div class="text-center py-4">
+                            <i class="bi bi-calendar-x text-muted" style="font-size: 3rem;"></i>
+                            <p class="text-muted mt-3">No tienes tutorías programadas para hoy</p>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Próximas Tutorías -->
+        <div class="col-lg-6">
+            <div class="card shadow-sm mb-4">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0"><i class="bi bi-calendar-event"></i> Próximas Tutorías</h5>
+                </div>
+                <div class="card-body">
+                    {% if tutorias_proximas %}
+                        <div class="list-group">
+                            {% for tutoria in tutorias_proximas %}
+                                <div class="list-group-item">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <h6 class="mb-1">{{ tutoria.fecha.strftime('%d/%m/%Y') }}</h6>
+                                        <small class="text-muted">{{ tutoria.hora_inicio }}</small>
+                                    </div>
+                                    <p class="mb-1">
+                                        <strong>Estudiante:</strong> {{ tutoria.estudiante.nombre }}<br>
+                                        <strong>Asignatura:</strong> {{ tutoria.asignatura.nombre }}
+                                    </p>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <div class="text-center py-4">
+                            <i class="bi bi-calendar-x text-muted" style="font-size: 3rem;"></i>
+                            <p class="text-muted mt-3">No hay tutorías próximas programadas</p>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tutorías Pendientes de Registro -->
+    {% if tutorias_pendientes %}
+        <div class="row">
+            <div class="col-12">
+                <div class="card shadow-sm border-danger">
+                    <div class="card-header bg-danger text-white">
+                        <h5 class="mb-0"><i class="bi bi-exclamation-triangle"></i> Tutorías Pendientes de Registro</h5>
+                    </div>
+                    <div class="card-body">
+                        <p class="text-danger">
+                            <strong>Atención:</strong> Tienes tutorías que ya se realizaron y están pendientes de registro.
+                        </p>
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Fecha</th>
+                                        <th>Estudiante</th>
+                                        <th>Asignatura</th>
+                                        <th>Horario</th>
+                                        <th>Acción</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for tutoria in tutorias_pendientes %}
+                                        <tr>
+                                            <td>{{ tutoria.fecha.strftime('%d/%m/%Y') }}</td>
+                                            <td>{{ tutoria.estudiante.nombre }}</td>
+                                            <td>{{ tutoria.asignatura.nombre }}</td>
+                                            <td>{{ tutoria.hora_inicio }} - {{ tutoria.hora_fin }}</td>
+                                            <td>
+                                                <a href="{{ url_for('main.registrar_tutoria', tutoria_id=tutoria.id) }}" 
+                                                   class="btn btn-sm btn-warning">
+                                                    <i class="bi bi-pencil-square"></i> Registrar
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

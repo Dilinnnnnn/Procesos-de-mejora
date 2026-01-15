@@ -1,0 +1,169 @@
+{% extends "base.html" %}
+
+{% block title %}Solicitar Tutoría - Sistema de Tutorías EPN{% endblock %}
+
+{% block content %}
+<div class="container my-4">
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0"><i class="bi bi-plus-circle"></i> Solicitar Nueva Tutoría</h4>
+                </div>
+                <div class="card-body">
+                    <form method="POST" id="formSolicitarTutoria">
+                        <!-- Paso 1: Seleccionar Asignatura -->
+                        <div class="mb-4">
+                            <label for="asignatura_id" class="form-label">
+                                <strong>1. Selecciona la Asignatura</strong>
+                            </label>
+                            <select class="form-select" id="asignatura_id" name="asignatura_id" required>
+                                <option value="">-- Selecciona una asignatura --</option>
+                                {% for asignatura in asignaturas %}
+                                    <option value="{{ asignatura.id }}">
+                                        {{ asignatura.codigo }} - {{ asignatura.nombre }}
+                                    </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <!-- Paso 2: Seleccionar Tutor -->
+                        <div class="mb-4" id="divTutor" style="display: none;">
+                            <label for="tutor_id" class="form-label">
+                                <strong>2. Selecciona el Tutor</strong>
+                            </label>
+                            <select class="form-select" id="tutor_id" name="tutor_id" required>
+                                <option value="">-- Primero selecciona una asignatura --</option>
+                            </select>
+                        </div>
+
+                        <!-- Paso 3: Ver Disponibilidad -->
+                        <div class="mb-4" id="divDisponibilidad" style="display: none;">
+                            <label class="form-label">
+                                <strong>3. Disponibilidad del Tutor</strong>
+                            </label>
+                            <div id="disponibilidadContent" class="alert alert-info">
+                                Selecciona un tutor para ver su disponibilidad
+                            </div>
+                        </div>
+
+                        <!-- Paso 4: Seleccionar Fecha y Hora -->
+                        <div class="mb-4" id="divFechaHora" style="display: none;">
+                            <label class="form-label">
+                                <strong>4. Selecciona Fecha y Hora</strong>
+                            </label>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label for="fecha" class="form-label">Fecha</label>
+                                    <input type="date" class="form-control" id="fecha" name="fecha" required>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="hora_inicio" class="form-label">Hora Inicio</label>
+                                    <input type="time" class="form-control" id="hora_inicio" name="hora_inicio" required>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="hora_fin" class="form-label">Hora Fin</label>
+                                    <input type="time" class="form-control" id="hora_fin" name="hora_fin" required>
+                                </div>
+                            </div>
+                            <small class="text-muted">
+                                <i class="bi bi-info-circle"></i> Selecciona una fecha y hora dentro de la disponibilidad mostrada
+                            </small>
+                        </div>
+
+                        <div class="d-flex justify-content-between">
+                            <a href="{{ url_for('main.estudiante_dashboard') }}" class="btn btn-secondary">
+                                <i class="bi bi-arrow-left"></i> Cancelar
+                            </a>
+                            <button type="submit" class="btn btn-primary" id="btnEnviar" disabled>
+                                <i class="bi bi-check-circle"></i> Confirmar Tutoría
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.getElementById('asignatura_id').addEventListener('change', function() {
+    const asignaturaId = this.value;
+    const divTutor = document.getElementById('divTutor');
+    const tutorSelect = document.getElementById('tutor_id');
+    
+    if (asignaturaId) {
+        // Cargar tutores disponibles para esta asignatura
+        fetch(`/api/tutores-por-asignatura/${asignaturaId}`)
+            .then(response => response.json())
+            .then(data => {
+                tutorSelect.innerHTML = '<option value="">-- Selecciona un tutor --</option>';
+                data.forEach(tutor => {
+                    const option = document.createElement('option');
+                    option.value = tutor.id;
+                    option.textContent = tutor.nombre;
+                    tutorSelect.appendChild(option);
+                });
+                divTutor.style.display = 'block';
+            });
+    } else {
+        divTutor.style.display = 'none';
+        document.getElementById('divDisponibilidad').style.display = 'none';
+        document.getElementById('divFechaHora').style.display = 'none';
+    }
+});
+
+document.getElementById('tutor_id').addEventListener('change', function() {
+    const tutorId = this.value;
+    const asignaturaId = document.getElementById('asignatura_id').value;
+    const divDisponibilidad = document.getElementById('divDisponibilidad');
+    const disponibilidadContent = document.getElementById('disponibilidadContent');
+    
+    if (tutorId && asignaturaId) {
+        // Cargar disponibilidad del tutor
+        fetch(`/api/disponibilidad-tutor/${tutorId}/${asignaturaId}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.length > 0) {
+                    let html = '<div class="table-responsive"><table class="table table-sm">';
+                    html += '<thead><tr><th>Día</th><th>Horario</th><th>Modalidad</th><th>Ubicación</th></tr></thead><tbody>';
+                    
+                    data.forEach(disp => {
+                        html += `<tr>
+                            <td><strong>${disp.dia}</strong></td>
+                            <td>${disp.hora_inicio} - ${disp.hora_fin}</td>
+                            <td><span class="badge bg-${disp.modalidad === 'virtual' ? 'info' : 'success'}">${disp.modalidad}</span></td>
+                            <td><small>${disp.ubicacion}</small></td>
+                        </tr>`;
+                    });
+                    
+                    html += '</tbody></table></div>';
+                    disponibilidadContent.className = 'alert alert-success';
+                    disponibilidadContent.innerHTML = html;
+                    
+                    divDisponibilidad.style.display = 'block';
+                    document.getElementById('divFechaHora').style.display = 'block';
+                    document.getElementById('btnEnviar').disabled = false;
+                } else {
+                    disponibilidadContent.className = 'alert alert-warning';
+                    disponibilidadContent.innerHTML = '<i class="bi bi-exclamation-triangle"></i> Este tutor no tiene disponibilidad configurada para esta asignatura';
+                    divDisponibilidad.style.display = 'block';
+                    document.getElementById('divFechaHora').style.display = 'none';
+                    document.getElementById('btnEnviar').disabled = true;
+                }
+            });
+    } else {
+        divDisponibilidad.style.display = 'none';
+        document.getElementById('divFechaHora').style.display = 'none';
+        document.getElementById('btnEnviar').disabled = true;
+    }
+});
+
+// Establecer fecha mínima como hoy
+const fechaInput = document.getElementById('fecha');
+const hoy = new Date().toISOString().split('T')[0];
+fechaInput.min = hoy;
+</script>
+{% endblock %}
