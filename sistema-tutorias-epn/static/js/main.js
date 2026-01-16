@@ -1,6 +1,53 @@
 // JavaScript para el Sistema de Gestión de Tutorías EPN
 
+// Sistema de Tema Oscuro/Claro
+function initTheme() {
+    const htmlElement = document.documentElement;
+    const themeToggle = document.getElementById('themeToggle');
+    
+    // Obtener el tema guardado o usar el preferido del sistema
+    const savedTheme = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const initialTheme = savedTheme || (prefersDark ? 'dark' : 'light');
+    
+    // Aplicar tema inicial
+    setTheme(initialTheme);
+    
+    // Event listener para el botón de cambio de tema
+    if (themeToggle) {
+        themeToggle.addEventListener('click', function() {
+            const currentTheme = localStorage.getItem('theme') || 'light';
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            setTheme(newTheme);
+        });
+    }
+}
+
+function setTheme(theme) {
+    const htmlElement = document.documentElement;
+    const themeToggle = document.getElementById('themeToggle');
+    
+    if (theme === 'dark') {
+        htmlElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+        if (themeToggle) {
+            themeToggle.innerHTML = '<i class="bi bi-sun-fill"></i>';
+            themeToggle.title = 'Modo claro';
+        }
+    } else {
+        htmlElement.removeAttribute('data-theme');
+        localStorage.setItem('theme', 'light');
+        if (themeToggle) {
+            themeToggle.innerHTML = '<i class="bi bi-moon-fill"></i>';
+            themeToggle.title = 'Modo oscuro';
+        }
+    }
+}
+
 document.addEventListener('DOMContentLoaded', function() {
+    // Inicializar tema
+    initTheme();
+    
     // Inicializar tooltips de Bootstrap
     const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
     tooltipTriggerList.map(function (tooltipTriggerEl) {
@@ -13,12 +60,15 @@ document.addEventListener('DOMContentLoaded', function() {
         return new bootstrap.Popover(popoverTriggerEl);
     });
 
-    // Auto-cerrar alertas después de 5 segundos
-    const alerts = document.querySelectorAll('.alert:not(.alert-permanent)');
+    // Auto-cerrar alertas después de 5 segundos (excepto las que contienen disponibilidad o están en modales)
+    const alerts = document.querySelectorAll('.alert:not(.alert-permanent):not(#disponibilidadContent):not(.modal .alert)');
     alerts.forEach(alert => {
         setTimeout(() => {
-            const bsAlert = new bootstrap.Alert(alert);
-            bsAlert.close();
+            // Verificar que el elemento aún exista en el DOM y no esté dentro de un modal
+            if (document.contains(alert) && !alert.closest('.modal')) {
+                const bsAlert = new bootstrap.Alert(alert);
+                bsAlert.close();
+            }
         }, 5000);
     });
 

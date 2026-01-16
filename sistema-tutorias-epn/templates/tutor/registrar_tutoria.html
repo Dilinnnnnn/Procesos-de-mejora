@@ -6,45 +6,47 @@
 <div class="container my-4">
     <div class="row">
         <div class="col-lg-8 mx-auto">
-            <div class="card shadow">
-                <div class="card-header bg-success text-white">
-                    <h4 class="mb-0"><i class="bi bi-pencil-square"></i> Registrar Resultado de Tutoría</h4>
+            <div class="card shadow" style="border: none; border-radius: 12px;">
+                <div style="background: var(--epn-success); color: white; padding: 1.5rem; border-radius: 12px 12px 0 0;">
+                    <h4 style="color: white; font-weight: 700; margin: 0;"><i class="bi bi-pencil-square"></i> Registrar Resultado de Tutoría</h4>
                 </div>
                 <div class="card-body">
                     <!-- Información de la tutoría -->
-                    <div class="alert alert-info">
-                        <h6 class="alert-heading">Información de la Tutoría</h6>
+                    <div style="padding: 1rem; background: var(--icon-bg); border-radius: 10px; border-left: 4px solid var(--epn-primary); margin-bottom: 1.5rem;">
+                        <h6 style="color: var(--text-primary); font-weight: 700; margin-bottom: 1rem;">Información de la Tutoría</h6>
                         <div class="row">
                             <div class="col-md-6">
-                                <p class="mb-1"><strong>Estudiante:</strong> {{ tutoria.estudiante.nombre }}</p>
-                                <p class="mb-1"><strong>Asignatura:</strong> {{ tutoria.asignatura.nombre }}</p>
+                                <p style="color: var(--text-primary); margin-bottom: 0.5rem;"><strong>Estudiante:</strong> <span style="color: var(--text-secondary);">{{ tutoria.estudiante.nombre }}</span></p>
+                                <p style="color: var(--text-primary); margin-bottom: 0;"><strong>Asignatura:</strong> <span style="color: var(--text-secondary);">{{ tutoria.asignatura.nombre }}</span></p>
                             </div>
                             <div class="col-md-6">
-                                <p class="mb-1"><strong>Fecha:</strong> {{ tutoria.fecha.strftime('%d/%m/%Y') }}</p>
-                                <p class="mb-1"><strong>Horario:</strong> {{ tutoria.hora_inicio }} - {{ tutoria.hora_fin }}</p>
+                                <p style="color: var(--text-primary); margin-bottom: 0.5rem;"><strong>Fecha:</strong> <span style="color: var(--text-secondary);">{{ tutoria.fecha.strftime('%d/%m/%Y') }}</span></p>
+                                <p style="color: var(--text-primary); margin-bottom: 0;"><strong>Horario:</strong> <span style="color: var(--text-secondary);">{{ tutoria.hora_inicio }} - {{ tutoria.hora_fin }}</span></p>
                             </div>
                         </div>
                     </div>
 
                     <form method="POST">
                         <div class="mb-3">
-                            <label for="temas_tratados" class="form-label">
-                                <strong>Temas Tratados</strong>
-                                <span class="text-danger">*</span>
+                            <label for="temas_tratados" class="form-label" style="color: var(--text-primary); font-weight: 700;">
+                                Temas Tratados
+                                <span style="color: var(--epn-danger);">*</span>
                             </label>
                             <textarea class="form-control" id="temas_tratados" name="temas_tratados" 
-                                      rows="3" required placeholder="Describe los temas que se abordaron en la tutoría..."></textarea>
-                            <small class="text-muted">
+                                      rows="3" required placeholder="Describe los temas que se abordaron en la tutoría..." 
+                                      style="background: var(--card-bg); color: var(--text-primary); border-color: var(--border-color);"></textarea>
+                            <small style="color: var(--text-secondary);">
                                 Ejemplo: Derivadas parciales, regla de la cadena, ejercicios de aplicación
                             </small>
                         </div>
 
                         <div class="mb-3">
-                            <label for="nivel_avance" class="form-label">
-                                <strong>Nivel de Avance del Estudiante</strong>
-                                <span class="text-danger">*</span>
+                            <label for="nivel_avance" class="form-label" style="color: var(--text-primary); font-weight: 700;">
+                                Nivel de Avance del Estudiante
+                                <span style="color: var(--epn-danger);">*</span>
                             </label>
-                            <select class="form-select" id="nivel_avance" name="nivel_avance" required>
+                            <select class="form-select" id="nivel_avance" name="nivel_avance" required 
+                                    style="background: var(--card-bg); color: var(--text-primary); border-color: var(--border-color);">
                                 <option value="">-- Selecciona el nivel de avance --</option>
                                 <option value="excelente">Excelente - Domina completamente los conceptos</option>
                                 <option value="bueno">Bueno - Comprende bien, con práctica mejorará</option>
@@ -54,24 +56,24 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="observaciones" class="form-label">
+                            <label for="observaciones" class="form-label" style="color: var(--text-primary); font-weight: 700;">
                                 <strong>Observaciones</strong>
                             </label>
                             <textarea class="form-control" id="observaciones" name="observaciones" 
-                                      rows="3" placeholder="Observaciones adicionales sobre el desempeño del estudiante..."></textarea>
-                            <small class="text-muted">
+                                      rows="3" placeholder="Observaciones adicionales sobre el desempeño del estudiante..." style="background: var(--card-bg); color: var(--text-primary); border-color: var(--border-color);"></textarea>
+                            <small style="color: var(--text-secondary);">
                                 Observaciones sobre actitud, participación, dificultades específicas, etc.
                             </small>
                         </div>
 
                         <div class="mb-3">
-                            <label for="recomendaciones" class="form-label">
+                            <label for="recomendaciones" class="form-label" style="color: var(--text-primary); font-weight: 700;">
                                 <strong>Recomendaciones</strong>
-                                <span class="text-danger">*</span>
+                                <span style="color: var(--epn-danger);">*</span>
                             </label>
                             <textarea class="form-control" id="recomendaciones" name="recomendaciones" 
-                                      rows="3" required placeholder="Recomendaciones para el estudiante..."></textarea>
-                            <small class="text-muted">
+                                      rows="3" required placeholder="Recomendaciones para el estudiante..." style="background: var(--card-bg); color: var(--text-primary); border-color: var(--border-color);"></textarea>
+                            <small style="color: var(--text-secondary);">
                                 Ejemplo: Resolver ejercicios del capítulo 5, revisar videos sobre el tema, practicar más problemas
                             </small>
                         </div>
@@ -96,8 +98,8 @@
 
             <!-- Ayuda y Guías -->
             <div class="card shadow-sm mt-4">
-                <div class="card-header bg-light">
-                    <h6 class="mb-0"><i class="bi bi-question-circle"></i> Guía para el Registro</h6>
+                <div class="card-header" style="background: var(--card-bg); border-color: var(--border-color);">
+                    <h6 class="mb-0" style="color: var(--text-primary);"><i class="bi bi-question-circle" style="color: var(--epn-primary); margin-right: 0.5rem;"></i> Guía para el Registro</h6>
                 </div>
                 <div class="card-body">
                     <ul class="mb-0">

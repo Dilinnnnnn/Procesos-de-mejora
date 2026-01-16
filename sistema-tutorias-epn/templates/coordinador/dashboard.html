@@ -6,8 +6,8 @@
 <div class="container my-4">
     <div class="row mb-4">
         <div class="col">
-            <h2><i class="bi bi-graph-up-arrow"></i> Dashboard - Coordinador</h2>
-            <p class="text-muted">Panel de control y estadísticas del sistema</p>
+            <h2 style="font-weight: 800; color: var(--text-primary); margin-bottom: 0.5rem;"><i class="bi bi-graph-up-arrow" style="color: var(--epn-primary); margin-right: 0.5rem;"></i>Dashboard - Coordinador</h2>
+            <p style="color: var(--text-secondary); margin: 0;">Panel de control y estadísticas del sistema</p>
         </div>
         <div class="col-auto">
             <a href="{{ url_for('main.coordinador_reportes') }}" class="btn btn-primary">
@@ -19,60 +19,60 @@
     <!-- Estadísticas Generales -->
     <div class="row mb-4">
         <div class="col-md-3">
-            <div class="card bg-primary text-white shadow">
-                <div class="card-body">
-                    <div class="d-flex justify-content-between">
+            <div class="card shadow-sm" style="border: none; border-radius: 12px; overflow: hidden;">
+                <div style="background: linear-gradient(135deg, var(--epn-primary) 0%, #0041a5 100%); color: white; padding: 1.5rem;">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start;">
                         <div>
-                            <h6 class="card-title"><i class="bi bi-people"></i> Estudiantes</h6>
-                            <h2 class="mb-0">{{ total_estudiantes }}</h2>
+                            <p style="color: rgba(255,255,255,0.9); font-size: 0.9rem; margin: 0 0 0.5rem 0;"><i class="bi bi-people"></i> Estudiantes</p>
+                            <h2 style="color: white; font-weight: 800; margin: 0;">{{ total_estudiantes }}</h2>
                         </div>
-                        <div>
-                            <i class="bi bi-person-badge" style="font-size: 3rem; opacity: 0.3;"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="card bg-success text-white shadow">
-                <div class="card-body">
-                    <div class="d-flex justify-content-between">
-                        <div>
-                            <h6 class="card-title"><i class="bi bi-person-workspace"></i> Tutores</h6>
-                            <h2 class="mb-0">{{ total_tutores }}</h2>
-                        </div>
-                        <div>
-                            <i class="bi bi-person-check" style="font-size: 3rem; opacity: 0.3;"></i>
+                        <div style="font-size: 3rem; opacity: 0.2;">
+                            <i class="bi bi-person-badge"></i>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-md-3">
-            <div class="card bg-info text-white shadow">
-                <div class="card-body">
-                    <div class="d-flex justify-content-between">
+            <div class="card shadow-sm" style="border: none; border-radius: 12px; overflow: hidden;">
+                <div style="background: linear-gradient(135deg, var(--epn-success) 0%, #2fa74a 100%); color: white; padding: 1.5rem;">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start;">
                         <div>
-                            <h6 class="card-title"><i class="bi bi-calendar-check"></i> Total Tutorías</h6>
-                            <h2 class="mb-0">{{ total_tutorias }}</h2>
+                            <p style="color: rgba(255,255,255,0.9); font-size: 0.9rem; margin: 0 0 0.5rem 0;"><i class="bi bi-person-workspace"></i> Tutores</p>
+                            <h2 style="color: white; font-weight: 800; margin: 0;">{{ total_tutores }}</h2>
                         </div>
-                        <div>
-                            <i class="bi bi-journal-check" style="font-size: 3rem; opacity: 0.3;"></i>
+                        <div style="font-size: 3rem; opacity: 0.2;">
+                            <i class="bi bi-person-check"></i>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-md-3">
-            <div class="card bg-warning text-white shadow">
-                <div class="card-body">
-                    <div class="d-flex justify-content-between">
+            <div class="card shadow-sm" style="border: none; border-radius: 12px; overflow: hidden;">
+                <div style="background: linear-gradient(135deg, var(--epn-secondary) 0%, #1e53e5 100%); color: white; padding: 1.5rem;">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start;">
                         <div>
-                            <h6 class="card-title"><i class="bi bi-calendar-month"></i> Este Mes</h6>
-                            <h2 class="mb-0">{{ tutorias_mes }}</h2>
+                            <p style="color: rgba(255,255,255,0.9); font-size: 0.9rem; margin: 0 0 0.5rem 0;"><i class="bi bi-calendar-check"></i> Total Tutorías</p>
+                            <h2 style="color: white; font-weight: 800; margin: 0;">{{ total_tutorias }}</h2>
                         </div>
+                        <div style="font-size: 3rem; opacity: 0.2;">
+                            <i class="bi bi-journal-check"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card shadow-sm" style="border: none; border-radius: 12px; overflow: hidden;">
+                <div style="background: linear-gradient(135deg, var(--epn-warning) 0%, #ff7f00 100%); color: white; padding: 1.5rem;">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start;">
                         <div>
-                            <i class="bi bi-calendar-event" style="font-size: 3rem; opacity: 0.3;"></i>
+                            <p style="color: rgba(255,255,255,0.9); font-size: 0.9rem; margin: 0 0 0.5rem 0;"><i class="bi bi-calendar-month"></i> Este Mes</p>
+                            <h2 style="color: white; font-weight: 800; margin: 0;">{{ tutorias_mes }}</h2>
+                        </div>
+                        <div style="font-size: 3rem; opacity: 0.2;">
+                            <i class="bi bi-calendar-event"></i>
                         </div>
                     </div>
                 </div>
@@ -127,7 +127,7 @@
                                                         {{ tutoria.nivel_avance.replace('_', ' ').capitalize() }}
                                                     </span>
                                                 {% else %}
-                                                    <span class="text-muted">-</span>
+                                                    <span style="color: var(--text-secondary);">-</span>
                                                 {% endif %}
                                             </td>
                                         </tr>
@@ -137,8 +137,8 @@
                         </div>
                     {% else %}
                         <div class="text-center py-5">
-                            <i class="bi bi-journal-x text-muted" style="font-size: 4rem;"></i>
-                            <p class="text-muted mt-3">No hay tutorías registradas aún</p>
+                            <i class="bi bi-journal-x" style="font-size: 4rem; color: var(--text-secondary);"></i>
+                            <p style="color: var(--text-secondary); margin-top: 1rem;">No hay tutorías registradas aún</p>
                         </div>
                     {% endif %}
                 </div>
@@ -150,8 +150,8 @@
     <div class="row mt-4">
         <div class="col-md-6">
             <div class="card shadow-sm">
-                <div class="card-header bg-light">
-                    <h6 class="mb-0"><i class="bi bi-info-circle"></i> Información del Sistema</h6>
+                <div class="card-header" style="background: var(--card-bg); border-color: var(--border-color);">
+                    <h6 class="mb-0" style="color: var(--text-primary);"><i class="bi bi-info-circle" style="color: var(--epn-primary); margin-right: 0.5rem;"></i> Información del Sistema</h6>
                 </div>
                 <div class="card-body">
                     <ul class="list-unstyled mb-0">
@@ -173,8 +173,8 @@
         </div>
         <div class="col-md-6">
             <div class="card shadow-sm">
-                <div class="card-header bg-light">
-                    <h6 class="mb-0"><i class="bi bi-tools"></i> Acciones Rápidas</h6>
+                <div class="card-header" style="background: var(--card-bg); border-color: var(--border-color);">
+                    <h6 class="mb-0" style="color: var(--text-primary);"><i class="bi bi-tools" style="color: var(--epn-primary); margin-right: 0.5rem;"></i> Acciones Rápidas</h6>
                 </div>
                 <div class="card-body">
                     <div class="d-grid gap-2">

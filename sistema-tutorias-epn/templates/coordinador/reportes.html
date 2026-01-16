@@ -6,8 +6,8 @@
 <div class="container my-4">
     <div class="row mb-4">
         <div class="col">
-            <h2><i class="bi bi-file-bar-graph"></i> Reportes y Estadísticas</h2>
-            <p class="text-muted">Análisis detallado del sistema de tutorías</p>
+            <h2 style="font-weight: 800; color: var(--text-primary); margin-bottom: 0.5rem;"><i class="bi bi-file-bar-graph" style="color: var(--epn-primary); margin-right: 0.5rem;"></i>Reportes y Estadísticas</h2>
+            <p style="color: var(--text-secondary); margin: 0;">Análisis detallado del sistema de tutorías</p>
         </div>
         <div class="col-auto">
             <a href="{{ url_for('main.coordinador_dashboard') }}" class="btn btn-outline-secondary">
@@ -19,25 +19,25 @@
     <!-- Tutorías por Estado -->
     <div class="row mb-4">
         <div class="col-lg-6">
-            <div class="card shadow-sm">
-                <div class="card-header bg-primary text-white">
-                    <h5 class="mb-0"><i class="bi bi-pie-chart"></i> Tutorías por Estado</h5>
+            <div class="card shadow-sm" style="border: none; border-radius: 12px;">
+                <div style="background: var(--epn-primary); color: white; padding: 1.5rem; border-radius: 12px 12px 0 0;">
+                    <h5 style="color: white; font-weight: 700; margin: 0;"><i class="bi bi-pie-chart"></i> Tutorías por Estado</h5>
                 </div>
                 <div class="card-body">
                     <canvas id="chartEstados" width="400" height="300"></canvas>
                     <div class="mt-3">
                         <div class="row text-center">
                             <div class="col-4">
-                                <h4 class="text-primary">{{ programadas }}</h4>
-                                <small class="text-muted">Programadas</small>
+                                <h4 style="color: var(--epn-primary); font-weight: 700;">{{ programadas }}</h4>
+                                <small style="color: var(--text-secondary);">Programadas</small>
                             </div>
                             <div class="col-4">
-                                <h4 class="text-success">{{ realizadas }}</h4>
-                                <small class="text-muted">Realizadas</small>
+                                <h4 style="color: var(--epn-success); font-weight: 700;">{{ realizadas }}</h4>
+                                <small style="color: var(--text-secondary);">Realizadas</small>
                             </div>
                             <div class="col-4">
-                                <h4 class="text-secondary">{{ canceladas }}</h4>
-                                <small class="text-muted">Canceladas</small>
+                                <h4 style="color: var(--text-secondary); font-weight: 700;">{{ canceladas }}</h4>
+                                <small style="color: var(--text-secondary);">Canceladas</small>
                             </div>
                         </div>
                     </div>
@@ -47,7 +47,7 @@
 
         <!-- Tutorías por Asignatura -->
         <div class="col-lg-6">
-            <div class="card shadow-sm">
+            <div class="card shadow-sm" style="border: none; border-radius: 12px;">
                 <div class="card-header bg-success text-white">
                     <h5 class="mb-0"><i class="bi bi-bar-chart"></i> Tutorías por Asignatura</h5>
                 </div>
@@ -112,7 +112,7 @@
                 <div class="card-body">
                     <i class="bi bi-trophy text-warning" style="font-size: 3rem;"></i>
                     <h4 class="mt-2">92%</h4>
-                    <p class="text-muted mb-0">Satisfacción Estudiantes</p>
+                    <p style="color: var(--text-secondary); margin-bottom: 0;">Satisfacción Estudiantes</p>
                 </div>
             </div>
         </div>
@@ -121,7 +121,7 @@
                 <div class="card-body">
                     <i class="bi bi-graph-up text-success" style="font-size: 3rem;"></i>
                     <h4 class="mt-2">95%</h4>
-                    <p class="text-muted mb-0">Tasa de Asistencia</p>
+                    <p style="color: var(--text-secondary); margin-bottom: 0;">Tasa de Asistencia</p>
                 </div>
             </div>
         </div>
@@ -130,7 +130,7 @@
                 <div class="card-body">
                     <i class="bi bi-clock text-primary" style="font-size: 3rem;"></i>
                     <h4 class="mt-2">1.5h</h4>
-                    <p class="text-muted mb-0">Duración Promedio</p>
+                    <p style="color: var(--text-secondary); margin-bottom: 0;">Duración Promedio</p>
                 </div>
             </div>
         </div>
@@ -139,7 +139,7 @@
                 <div class="card-body">
                     <i class="bi bi-people text-info" style="font-size: 3rem;"></i>
                     <h4 class="mt-2">3.2</h4>
-                    <p class="text-muted mb-0">Tutorías por Estudiante</p>
+                    <p style="color: var(--text-secondary); margin-bottom: 0;">Tutorías por Estudiante</p>
                 </div>
             </div>
         </div>

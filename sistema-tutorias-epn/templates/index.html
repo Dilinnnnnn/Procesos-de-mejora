@@ -3,62 +3,79 @@
 {% block title %}Inicio - Sistema de Tutorías EPN{% endblock %}
 
 {% block content %}
+<!-- Hero Section -->
 <div class="hero-section">
-    <div class="container">
-        <div class="row align-items-center min-vh-100">
+    <div class="container py-5">
+        <div class="row align-items-center g-5">
+            <!-- Left Content -->
             <div class="col-lg-6">
-                <h1 class="display-4 fw-bold mb-4">Sistema de Gestión de Tutorías Académicas</h1>
-                <p class="lead mb-4">
-                    Plataforma integral para la gestión eficiente de tutorías en la 
-                    Escuela Politécnica Nacional
+                <p style="color: var(--epn-primary); font-weight: 600; margin-bottom: 0.5rem;">Escuela Politécnica Nacional</p>
+                <h1 style="font-size: 2.8rem; font-weight: 800; color: var(--text-primary); line-height: 1.2; margin-bottom: 1.5rem;">
+                    Sistema de<br>Gestión de<br><span style="color: var(--epn-secondary);">Tutorías<br>Académicas</span>
+                </h1>
+                <p style="font-size: 1.05rem; color: var(--text-secondary); line-height: 1.8; margin-bottom: 2rem;">
+                    Plataforma integral para la gestión eficiente de tutorías. Conecta estudiantes y tutores de manera simple y efectiva.
                 </p>
-                <div class="d-grid gap-2 d-md-flex">
+                <div class="d-flex gap-3">
                     {% if current_user.is_authenticated %}
-                        <a href="{{ url_for('main.dashboard') }}" class="btn btn-primary btn-lg px-4">
+                        <a href="{{ url_for('main.dashboard') }}" class="btn btn-primary" style="padding: 0.75rem 2rem; font-size: 1rem;">
                             <i class="bi bi-speedometer2"></i> Ir al Dashboard
                         </a>
                     {% else %}
-                        <a href="{{ url_for('main.login') }}" class="btn btn-primary btn-lg px-4">
+                        <a href="{{ url_for('main.login') }}" class="btn btn-primary" style="padding: 0.75rem 2rem; font-size: 1rem;">
                             <i class="bi bi-box-arrow-in-right"></i> Iniciar Sesión
+                        </a>
+                        <a href="#caracteristicas" class="btn btn-outline-primary" style="padding: 0.75rem 2rem; font-size: 1rem;">
+                            Conocer más
                         </a>
                     {% endif %}
                 </div>
             </div>
+            
+            <!-- Right Content - Feature Cards -->
             <div class="col-lg-6">
                 <div class="row g-4">
                     <div class="col-md-6">
-                        <div class="card shadow-sm h-100">
-                            <div class="card-body text-center">
-                                <i class="bi bi-calendar-check feature-icon text-primary"></i>
-                                <h5 class="card-title">Reserva Fácil</h5>
-                                <p class="card-text">Solicita tutorías según la disponibilidad real de los tutores</p>
+                        <div class="card h-100" style="background: var(--card-bg); border: 1px solid var(--border-color);">
+                            <div class="card-body text-center p-4">
+                                <div style="width: 60px; height: 60px; background: rgba(13, 71, 161, 0.1); border-radius: 10px; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem;">
+                                    <i class="bi bi-calendar-check" style="font-size: 1.8rem; color: var(--epn-primary);"></i>
+                                </div>
+                                <h5 style="font-weight: 700; color: var(--text-primary); margin-bottom: 0.5rem;">Estudiantes</h5>
+                                <p style="font-size: 0.9rem; color: var(--text-secondary); margin: 0;">Gestiona tus tutorías</p>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <div class="card shadow-sm h-100">
-                            <div class="card-body text-center">
-                                <i class="bi bi-clock-history feature-icon text-success"></i>
-                                <h5 class="card-title">Historial</h5>
-                                <p class="card-text">Accede al registro completo de todas tus tutorías</p>
+                        <div class="card h-100" style="background: var(--card-bg); border: 1px solid var(--border-color);">
+                            <div class="card-body text-center p-4">
+                                <div style="width: 60px; height: 60px; background: rgba(13, 71, 161, 0.1); border-radius: 10px; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem;">
+                                    <i class="bi bi-people-fill" style="font-size: 1.8rem; color: var(--epn-primary);"></i>
+                                </div>
+                                <h5 style="font-weight: 700; color: var(--text-primary); margin-bottom: 0.5rem;">Tutores</h5>
+                                <p style="font-size: 0.9rem; color: var(--text-secondary); margin: 0;">Ofrece tus servicios</p>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <div class="card shadow-sm h-100">
-                            <div class="card-body text-center">
-                                <i class="bi bi-bell feature-icon text-warning"></i>
-                                <h5 class="card-title">Notificaciones</h5>
-                                <p class="card-text">Recibe alertas automáticas de tus tutorías programadas</p>
+                        <div class="card h-100" style="background: var(--card-bg); border: 1px solid var(--border-color);">
+                            <div class="card-body text-center p-4">
+                                <div style="width: 60px; height: 60px; background: rgba(13, 71, 161, 0.1); border-radius: 10px; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem;">
+                                    <i class="bi bi-clock-history" style="font-size: 1.8rem; color: var(--epn-primary);"></i>
+                                </div>
+                                <h5 style="font-weight: 700; color: var(--text-primary); margin-bottom: 0.5rem;">Tutorías</h5>
+                                <p style="font-size: 0.9rem; color: var(--text-secondary); margin: 0;">Historial completo</p>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <div class="card shadow-sm h-100">
-                            <div class="card-body text-center">
-                                <i class="bi bi-graph-up feature-icon text-info"></i>
-                                <h5 class="card-title">Seguimiento</h5>
-                                <p class="card-text">Monitorea tu progreso académico con reportes detallados</p>
+                        <div class="card h-100" style="background: var(--card-bg); border: 1px solid var(--border-color);">
+                            <div class="card-body text-center p-4">
+                                <div style="width: 60px; height: 60px; background: rgba(13, 71, 161, 0.1); border-radius: 10px; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem;">
+                                    <i class="bi bi-star-fill" style="font-size: 1.8rem; color: var(--epn-primary);"></i>
+                                </div>
+                                <h5 style="font-weight: 700; color: var(--text-primary); margin-bottom: 0.5rem;">Satisfacción</h5>
+                                <p style="font-size: 0.9rem; color: var(--text-secondary); margin: 0;">Feedback y análisis</p>
                             </div>
                         </div>
                     </div>
@@ -68,53 +85,223 @@
     </div>
 </div>
 
-<div class="container my-5">
-    <div class="row">
-        <div class="col-lg-4">
-            <div class="card border-primary mb-4">
-                <div class="card-header bg-primary text-white">
-                    <h5 class="mb-0"><i class="bi bi-person-video3"></i> Para Estudiantes</h5>
-                </div>
-                <div class="card-body">
-                    <ul class="list-unstyled">
-                        <li><i class="bi bi-check-circle-fill text-success"></i> Solicita tutorías en línea</li>
-                        <li><i class="bi bi-check-circle-fill text-success"></i> Visualiza disponibilidad en tiempo real</li>
-                        <li><i class="bi bi-check-circle-fill text-success"></i> Recibe recomendaciones personalizadas</li>
-                        <li><i class="bi bi-check-circle-fill text-success"></i> Accede a tu historial académico</li>
-                    </ul>
+<!-- Características Principales -->
+<div class="py-5" style="background: var(--bg-primary);">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 style="font-size: 2.2rem; font-weight: 800; color: var(--text-primary); margin-bottom: 1rem;">Características Principales</h2>
+            <p style="font-size: 1.05rem; color: var(--text-secondary);">Todo lo que necesitas para gestionar tus tutorías de forma eficiente</p>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100 text-center" style="border: none; background: var(--card-bg);">
+                    <div class="card-body">
+                        <div style="width: 70px; height: 70px; background: var(--icon-bg); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem;">
+                            <i class="bi bi-calendar-check" style="font-size: 2rem; color: var(--epn-primary);"></i>
+                        </div>
+                        <h5 style="font-weight: 700; color: var(--text-primary); margin-bottom: 0.8rem;">Reserva Fácil</h5>
+                        <p style="font-size: 0.9rem; color: var(--text-secondary);">Solicita tutorías según la disponibilidad real de los tutores</p>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-lg-4">
-            <div class="card border-success mb-4">
-                <div class="card-header bg-success text-white">
-                    <h5 class="mb-0"><i class="bi bi-person-workspace"></i> Para Tutores</h5>
-                </div>
-                <div class="card-body">
-                    <ul class="list-unstyled">
-                        <li><i class="bi bi-check-circle-fill text-success"></i> Gestiona tu disponibilidad</li>
-                        <li><i class="bi bi-check-circle-fill text-success"></i> Registra resultados de tutorías</li>
-                        <li><i class="bi bi-check-circle-fill text-success"></i> Modalidad presencial o virtual</li>
-                        <li><i class="bi bi-check-circle-fill text-success"></i> Seguimiento de estudiantes</li>
-                    </ul>
+            
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100 text-center" style="border: none; background: var(--card-bg);">
+                    <div class="card-body">
+                        <div style="width: 70px; height: 70px; background: var(--icon-bg); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem;">
+                            <i class="bi bi-clock" style="font-size: 2rem; color: var(--epn-primary);"></i>
+                        </div>
+                        <h5 style="font-weight: 700; color: var(--text-primary); margin-bottom: 0.8rem;">Historial</h5>
+                        <p style="font-size: 0.9rem; color: var(--text-secondary);">Accede al registro completo de todas tus tutorías</p>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-lg-4">
-            <div class="card border-info mb-4">
-                <div class="card-header bg-info text-white">
-                    <h5 class="mb-0"><i class="bi bi-graph-up-arrow"></i> Para Coordinadores</h5>
+            
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100 text-center" style="border: none; background: var(--card-bg);">
+                    <div class="card-body">
+                        <div style="width: 70px; height: 70px; background: var(--icon-bg); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem;">
+                            <i class="bi bi-bell" style="font-size: 2rem; color: var(--epn-primary);"></i>
+                        </div>
+                        <h5 style="font-weight: 700; color: var(--text-primary); margin-bottom: 0.8rem;">Notificaciones</h5>
+                        <p style="font-size: 0.9rem; color: var(--text-secondary);">Recibe alertas automáticas de tus tutorías programadas</p>
+                    </div>
                 </div>
-                <div class="card-body">
-                    <ul class="list-unstyled">
-                        <li><i class="bi bi-check-circle-fill text-success"></i> Reportes y estadísticas</li>
-                        <li><i class="bi bi-check-circle-fill text-success"></i> Identificación de estudiantes en riesgo</li>
-                        <li><i class="bi bi-check-circle-fill text-success"></i> Evaluación del impacto</li>
-                        <li><i class="bi bi-check-circle-fill text-success"></i> Toma de decisiones basada en datos</li>
-                    </ul>
+            </div>
+            
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100 text-center" style="border: none; background: var(--card-bg);">
+                    <div class="card-body">
+                        <div style="width: 70px; height: 70px; background: var(--icon-bg); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem;">
+                            <i class="bi bi-graph-up" style="font-size: 2rem; color: var(--epn-primary);"></i>
+                        </div>
+                        <h5 style="font-weight: 700; color: var(--text-primary); margin-bottom: 0.8rem;">Seguimiento</h5>
+                        <p style="font-size: 0.9rem; color: var(--text-secondary);">Monitorea tu progreso académico con reportes detallados</p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<!-- Diseñado para Todos -->
+<div class="py-5" style="background: var(--bg-secondary);">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 style="font-size: 2.2rem; font-weight: 800; color: var(--text-primary); margin-bottom: 1rem;">Diseñado para Todos</h2>
+            <p style="font-size: 1.05rem; color: var(--text-secondary);">Una plataforma completa que se adapta a las necesidades de cada usuario</p>
+        </div>
+        
+        <div class="row g-4">
+            <!-- Estudiantes -->
+            <div class="col-lg-4">
+                <div class="card h-100" style="border: 2px solid #e0e0e0; border-left: 4px solid #4A90E2;">
+                    <div class="card-body">
+                        <div style="width: 50px; height: 50px; background: #e3f2fd; border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem;">
+                            <i class="bi bi-mortarboard" style="font-size: 1.8rem; color: #0052CC;"></i>
+                        </div>
+                        <h5 style="font-weight: 700; color: #333; margin-bottom: 1.5rem;">Para Estudiantes</h5>
+                        <ul style="list-style: none; padding: 0;">
+                            <li style="margin-bottom: 1rem; display: flex; gap: 0.5rem;">
+                                <i class="bi bi-check-circle-fill" style="color: var(--epn-primary); flex-shrink: 0; margin-top: 0.2rem;"></i>
+                                <span style="color: #666;">Solicita tutorías en línea</span>
+                            </li>
+                            <li style="margin-bottom: 1rem; display: flex; gap: 0.5rem;">
+                                <i class="bi bi-check-circle-fill" style="color: var(--epn-primary); flex-shrink: 0; margin-top: 0.2rem;"></i>
+                                <span style="color: #666;">Visualiza disponibilidad en tiempo real</span>
+                            </li>
+                            <li style="margin-bottom: 1rem; display: flex; gap: 0.5rem;">
+                                <i class="bi bi-check-circle-fill" style="color: var(--epn-primary); flex-shrink: 0; margin-top: 0.2rem;"></i>
+                                <span style="color: #666;">Recibe recomendaciones personalizadas</span>
+                            </li>
+                            <li style="display: flex; gap: 0.5rem;">
+                                <i class="bi bi-check-circle-fill" style="color: var(--epn-primary); flex-shrink: 0; margin-top: 0.2rem;"></i>
+                                <span style="color: #666;">Accede a tu historial académico</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Tutores -->
+            <div class="col-lg-4">
+                <div class="card h-100" style="border: 2px solid #e0e0e0; border-left: 4px solid #34C759;">
+                    <div class="card-body">
+                        <div style="width: 50px; height: 50px; background: var(--icon-bg); border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem;">
+                            <i class="bi bi-people-fill" style="font-size: 1.8rem; color: var(--epn-success);"></i>
+                        </div>
+                        <h5 style="font-weight: 700; color: var(--text-primary); margin-bottom: 1.5rem;">Para Tutores</h5>
+                        <ul style="list-style: none; padding: 0;">
+                            <li style="margin-bottom: 1rem; display: flex; gap: 0.5rem;">
+                                <i class="bi bi-check-circle-fill" style="color: var(--epn-success); flex-shrink: 0; margin-top: 0.2rem;"></i>
+                                <span style="color: var(--text-secondary);">Gestiona tu disponibilidad</span>
+                            </li>
+                            <li style="margin-bottom: 1rem; display: flex; gap: 0.5rem;">
+                                <i class="bi bi-check-circle-fill" style="color: var(--epn-success); flex-shrink: 0; margin-top: 0.2rem;"></i>
+                                <span style="color: var(--text-secondary);">Registra resultados de tutorías</span>
+                            </li>
+                            <li style="margin-bottom: 1rem; display: flex; gap: 0.5rem;">
+                                <i class="bi bi-check-circle-fill" style="color: var(--epn-success); flex-shrink: 0; margin-top: 0.2rem;"></i>
+                                <span style="color: var(--text-secondary);">Modalidad presencial o virtual</span>
+                            </li>
+                            <li style="display: flex; gap: 0.5rem;">
+                                <i class="bi bi-check-circle-fill" style="color: var(--epn-success); flex-shrink: 0; margin-top: 0.2rem;"></i>
+                                <span style="color: var(--text-secondary);">Seguimiento de estudiantes</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Coordinadores -->
+            <div class="col-lg-4">
+                <div class="card h-100" style="border: 2px solid var(--border-color); border-left: 4px solid var(--epn-warning);">
+                    <div class="card-body">
+                        <div style="width: 50px; height: 50px; background: rgba(255, 149, 0, 0.15); border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem;">
+                            <i class="bi bi-graph-up" style="font-size: 1.8rem; color: var(--epn-warning);"></i>
+                        </div>
+                        <h5 style="font-weight: 700; color: var(--text-primary); margin-bottom: 1.5rem;">Para Coordinadores</h5>
+                        <ul style="list-style: none; padding: 0;">
+                            <li style="margin-bottom: 1rem; display: flex; gap: 0.5rem;">
+                                <i class="bi bi-check-circle-fill" style="color: var(--epn-warning); flex-shrink: 0; margin-top: 0.2rem;"></i>
+                                <span style="color: var(--text-secondary);">Reportes y estadísticas</span>
+                            </li>
+                            <li style="margin-bottom: 1rem; display: flex; gap: 0.5rem;">
+                                <i class="bi bi-check-circle-fill" style="color: var(--epn-warning); flex-shrink: 0; margin-top: 0.2rem;"></i>
+                                <span style="color: var(--text-secondary);">Identificación de estudiantes en riesgo</span>
+                            </li>
+                            <li style="margin-bottom: 1rem; display: flex; gap: 0.5rem;">
+                                <i class="bi bi-check-circle-fill" style="color: var(--epn-warning); flex-shrink: 0; margin-top: 0.2rem;"></i>
+                                <span style="color: var(--text-secondary);">Evaluación del impacto</span>
+                            </li>
+                            <li style="display: flex; gap: 0.5rem;">
+                                <i class="bi bi-check-circle-fill" style="color: var(--epn-warning); flex-shrink: 0; margin-top: 0.2rem;"></i>
+                                <span style="color: var(--text-secondary);">Toma de decisiones basada en datos</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer style="background: #082756; color: white; padding: 3rem 0; margin-top: 3rem;">
+    <div class="container">
+        <div class="row g-5 mb-4">
+            <!-- Sobre Nosotros -->
+            <div class="col-md-3">
+                <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1.5rem;">
+                    <div style="width: 40px; height: 40px; background: rgba(255,255,255,0.3); border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+                        <i class="bi bi-mortarboard-fill" style="color: white; font-size: 1.3rem;"></i>
+                    </div>
+                    <span style="font-weight: 700; font-size: 1.1rem; color: white;">EPN Tutorías</span>
+                </div>
+                <p style="font-size: 0.9rem; color: rgba(255,255,255,0.85); margin-bottom: 0;">Sistema de gestión de tutorías académicas de la Escuela Politécnica Nacional.</p>
+            </div>
+            
+            <!-- Enlaces Rápidos -->
+            <div class="col-md-3">
+                <h6 style="font-weight: 700; margin-bottom: 1.5rem; color: white;">Enlaces Rápidos</h6>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="margin-bottom: 0.8rem;"><a href="{{ url_for('main.index') }}" style="color: rgba(255,255,255,0.85); text-decoration: none; transition: color 0.3s; font-size: 0.9rem;">Inicio</a></li>
+                    <li style="margin-bottom: 0.8rem;"><a href="{{ url_for('main.dashboard') }}" style="color: rgba(255,255,255,0.85); text-decoration: none; transition: color 0.3s; font-size: 0.9rem;">Dashboard</a></li>
+                    <li style="margin-bottom: 0.8rem;"><a href="#" style="color: rgba(255,255,255,0.85); text-decoration: none; transition: color 0.3s; font-size: 0.9rem;">Tutorías</a></li>
+                    <li style="margin-bottom: 0.8rem;"><a href="#" style="color: rgba(255,255,255,0.85); text-decoration: none; transition: color 0.3s; font-size: 0.9rem;">Ayuda</a></li>
+                </ul>
+            </div>
+            
+            <!-- Soporte -->
+            <div class="col-md-3">
+                <h6 style="font-weight: 700; margin-bottom: 1.5rem; color: white;">Soporte</h6>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="margin-bottom: 0.8rem;"><a href="#" style="color: rgba(255,255,255,0.85); text-decoration: none; font-size: 0.9rem;">Preguntas Frecuentes</a></li>
+                    <li style="margin-bottom: 0.8rem;"><a href="#" style="color: rgba(255,255,255,0.85); text-decoration: none; font-size: 0.9rem;">Guías de Usuario</a></li>
+                    <li style="margin-bottom: 0.8rem;"><a href="#" style="color: rgba(255,255,255,0.85); text-decoration: none; font-size: 0.9rem;">Contacto</a></li>
+                    <li style="margin-bottom: 0.8rem;"><a href="#" style="color: rgba(255,255,255,0.85); text-decoration: none; font-size: 0.9rem;">Términos de Uso</a></li>
+                </ul>
+            </div>
+            
+            <!-- Contacto -->
+            <div class="col-md-3">
+                <h6 style="font-weight: 700; margin-bottom: 1.5rem; color: white;">Contacto</h6>
+                <p style="font-size: 0.9rem; color: rgba(255,255,255,0.85); margin-bottom: 1rem;">
+                    <i class="bi bi-geo-alt" style="margin-right: 0.5rem;"></i> Ladrón de Guevara E11-253, Quito, Ecuador
+                </p>
+                <p style="font-size: 0.9rem; color: rgba(255,255,255,0.85); margin-bottom: 1rem;">
+                    <i class="bi bi-telephone" style="margin-right: 0.5rem;"></i> +593 2 297-6300
+                </p>
+                <p style="font-size: 0.9rem; color: rgba(255,255,255,0.85);">
+                    <i class="bi bi-envelope" style="margin-right: 0.5rem;"></i> <a href="mailto:tutorias@epn.edu.ec" style="color: rgba(255,255,255,0.85); text-decoration: none;">tutorias@epn.edu.ec</a>
+                </p>
+            </div>
+        </div>
+        
+        <div style="border-top: 1px solid rgba(255,255,255,0.2); padding-top: 2rem; text-align: center; color: rgba(255,255,255,0.75); font-size: 0.9rem;">
+            <p style="margin: 0;">© 2026 Escuela Politécnica Nacional. Todos los derechos reservados.</p>
+        </div>
+    </div>
+</footer>
 {% endblock %}
